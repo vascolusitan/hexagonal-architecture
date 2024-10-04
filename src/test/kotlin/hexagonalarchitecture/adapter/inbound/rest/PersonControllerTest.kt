@@ -1,7 +1,8 @@
 package hexagonalarchitecture.adapter.inbound.rest
 
 import com.ninjasquad.springmockk.MockkBean
-import hexagonalarchitecture.adapter.inbound.rest.mappers.PersonApiMapper
+import hexagonalarchitecture.adapter.inbound.rest.mapper.PersonApiMapper
+import hexagonalarchitecture.adapter.inbound.rest.model.PersonApi
 import hexagonalarchitecture.application.domain.model.Maturity
 import hexagonalarchitecture.application.domain.model.Person
 import hexagonalarchitecture.application.domain.model.Sex
@@ -26,12 +27,12 @@ class PersonControllerTest {
 
     @Test
     fun `should get all persons`() {
-        val person1 = Person("Vasco Lusitano", Sex.MASCULINE, 27, Maturity.ADULT)
-        val person2 = Person("Rita Lima", Sex.FEMININE, 26, Maturity.ADULT)
+        val person1 = Person(1L, "Vasco Lusitano", Sex.MASCULINE, 27, Maturity.ADULT)
+        val person2 = Person(2L, "Rita Lima", Sex.FEMININE, 26, Maturity.ADULT)
         val personsList = listOf(person1, person2)
         every { getAllPersonsUseCase.get() } returns personsList
-        val expectedPerson1 = PersonApi("Vasco Lusitano", "MASCULINE", 27, "ADULT")
-        val expectedPerson2 = PersonApi("Rita Lima", "FEMININE", 26, "ADULT")
+        val expectedPerson1 = PersonApi(1L, "Vasco Lusitano", "MASCULINE", 27, "ADULT")
+        val expectedPerson2 = PersonApi(2L, "Rita Lima", "FEMININE", 26, "ADULT")
         every { personApiMapper.domainToApi(personsList) } returns listOf(expectedPerson1, expectedPerson2)
 
         mockMvc.get("/api/v1/persons")

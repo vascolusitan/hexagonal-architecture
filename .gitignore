@@ -3,3 +3,7 @@
 
 # Ignore Maven target directory
 target/
+
+# Ignore Embedded Database files
+hexagonal.mv.db
+hexagonal.trace.db

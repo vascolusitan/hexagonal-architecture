@@ -22,9 +22,9 @@ class GetAllPersonsServiceTest {
     private lateinit var getAllPersonsService: GetAllPersonsService
 
     @Test
-    fun get() {
-        val person1 = Person("Vasco Lusitano", Sex.MASCULINE, 27, Maturity.ADULT)
-        val person2 = Person("Rita Lima", Sex.FEMININE, 26, Maturity.ADULT)
+    fun `should get all persons`() {
+        val person1 = Person(1L, "Vasco Lusitano", Sex.MASCULINE, 27, Maturity.ADULT)
+        val person2 = Person(2L, "Rita Lima", Sex.FEMININE, 26, Maturity.ADULT)
         val expectedPersons = listOf(person1, person2)
         every { getAllPersonsPort.get() } returns expectedPersons
 
