@@ -31,7 +31,10 @@
 		<kotlin.version>1.9.25</kotlin.version>
 		<jvm.version>1.8</jvm.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-		<org.mapstruct.version>1.6.2</org.mapstruct.version>
+		<mapstruct.version>1.6.2</mapstruct.version>
+		<asserj-core.version>3.26.3</asserj-core.version>
+		<mockk.version>1.13.12</mockk.version>
+		<springmockk.version>3.0.1</springmockk.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -60,7 +63,7 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>${org.mapstruct.version}</version>
+			<version>${mapstruct.version}</version>
 		</dependency>
 
 		<dependency>
@@ -69,8 +72,15 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jetbrains.kotlin</groupId>
-			<artifactId>kotlin-test-junit5</artifactId>
+		    <groupId>io.mockk</groupId>
+		    <artifactId>mockk-jvm</artifactId>
+			<version>${mockk.version}</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ninja-squad</groupId>
+			<artifactId>springmockk</artifactId>
+			<version>${springmockk.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -101,7 +111,7 @@
 								<annotationProcessorPath>
 									<groupId>org.mapstruct</groupId>
 									<artifactId>mapstruct-processor</artifactId>
-									<version>${org.mapstruct.version}</version>
+									<version>${mapstruct.version}</version>
 								</annotationProcessorPath>
 							</annotationProcessorPaths>
 						</configuration>
