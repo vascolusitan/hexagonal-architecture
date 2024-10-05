@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+
+  pubsub-emulator:
+    image: gcr.io/google.com/cloudsdktool/cloud-sdk:488.0.0-emulators
+    container_name: pubsub-emulator
+    ports:
+      - "8685:8685"
+    volumes:
+      - ./init-pubsub.sh:/init-pubsub.sh
+    entrypoint: ["/init-pubsub.sh"]
+    restart: always
+    
