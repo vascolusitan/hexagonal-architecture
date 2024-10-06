@@ -6,6 +6,6 @@ interface CreatePersonPort {
 
     fun create(person: Person)
 
-    fun audit(message: String)
+    fun createWithMessageId(messageId: String, person: Person)
 
 }

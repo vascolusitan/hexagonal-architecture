@@ -34,6 +34,7 @@
 		<mapstruct.version>1.6.2</mapstruct.version>
 		<gcp-pubsub.version>5.7.0</gcp-pubsub.version>
 		<spring-boot-starter-integration.version>3.3.4</spring-boot-starter-integration.version>
+		<spring-data-redis.version>3.3.4</spring-data-redis.version>
 		<asserj-core.version>3.26.3</asserj-core.version>
 		<mockk.version>1.13.12</mockk.version>
 		<springmockk.version>3.0.1</springmockk.version>
@@ -88,7 +89,17 @@
 		    <artifactId>h2</artifactId>
 		    <scope>runtime</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>${spring-data-redis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

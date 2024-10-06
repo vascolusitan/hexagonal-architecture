@@ -1,4 +1,4 @@
-package hexagonalarchitecture.adapter.outbound.database.model
+package hexagonalarchitecture.adapter.outbound.database.sql.model
 
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -13,7 +13,8 @@ data class PersonEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long,
-    val timeStamp: LocalDateTime,
+    val messageId: String? = null,
+    val timeStamp: LocalDateTime? = LocalDateTime.now(),
     val name: String,
     val sex: String,
     val age: Int,

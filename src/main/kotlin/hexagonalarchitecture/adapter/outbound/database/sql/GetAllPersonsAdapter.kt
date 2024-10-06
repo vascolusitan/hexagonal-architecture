@@ -1,6 +1,6 @@
-package hexagonalarchitecture.adapter.outbound.database
+package hexagonalarchitecture.adapter.outbound.database.sql
 
-import hexagonalarchitecture.adapter.outbound.database.mapper.PersonEntityMapper
+import hexagonalarchitecture.adapter.outbound.database.sql.mapper.PersonEntityMapper
 import hexagonalarchitecture.application.domain.model.Person
 import hexagonalarchitecture.application.port.outbound.GetAllPersonsPort
 import org.springframework.stereotype.Component

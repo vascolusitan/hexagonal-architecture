@@ -1,7 +1,7 @@
-package hexagonalarchitecture.adapter.outbound.database
+package hexagonalarchitecture.adapter.outbound.database.sql
 
-import hexagonalarchitecture.adapter.outbound.database.mapper.PersonEntityMapper
-import hexagonalarchitecture.adapter.outbound.database.model.PersonEntity
+import hexagonalarchitecture.adapter.outbound.database.sql.mapper.PersonEntityMapper
+import hexagonalarchitecture.adapter.outbound.database.sql.model.PersonEntity
 import hexagonalarchitecture.application.domain.model.Maturity
 import hexagonalarchitecture.application.domain.model.Person
 import hexagonalarchitecture.application.domain.model.Sex
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import java.time.LocalDateTime
 
 @ExtendWith(MockKExtension::class)
-class GetAllPersonsAdapterTest {
+class AuditMessageAdapterTest {
 
     @MockK
     private lateinit var personRepository: PersonRepository
@@ -26,8 +26,20 @@ class GetAllPersonsAdapterTest {
 
     @Test
     fun `should get all persons`() {
-        val person1 = PersonEntity(1L, LocalDateTime.now(), "Vasco Lusitano", "MASCULINE", 27, "ADULT")
-        val person2 = PersonEntity(2L, LocalDateTime.now(), "Rita Lima", "FEMININE", 26, "ADULT")
+        val person1 = PersonEntity(
+            id = 1L,
+            name = "Vasco Lusitano",
+            sex = "MASCULINE",
+            age = 27,
+            maturity = "ADULT"
+        )
+        val person2 = PersonEntity(
+            id = 2L,
+            name = "Rita Lima",
+            sex = "FEMININE",
+            age = 26,
+            maturity = "ADULT"
+        )
         val dbEntityPersons = listOf(person1, person2)
         every { personRepository.findAll() } returns dbEntityPersons
         val expectedPerson1 = Person(1L, "Vasco Lusitano", Sex.MASCULINE, 27, Maturity.ADULT)

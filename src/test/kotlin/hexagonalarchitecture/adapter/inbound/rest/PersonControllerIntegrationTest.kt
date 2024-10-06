@@ -1,7 +1,7 @@
 package hexagonalarchitecture.adapter.inbound.rest
 
-import hexagonalarchitecture.adapter.outbound.database.PersonRepository
-import hexagonalarchitecture.adapter.outbound.database.model.PersonEntity
+import hexagonalarchitecture.adapter.outbound.database.sql.PersonRepository
+import hexagonalarchitecture.adapter.outbound.database.sql.model.PersonEntity
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -29,8 +29,20 @@ class PersonControllerIntegrationTest {
     @BeforeEach
     fun setup() {
         personRepository.deleteAll()
-        val person1 = PersonEntity(1L, LocalDateTime.now(), "Vasco Lusitano", "MASCULINE", 27, "ADULT")
-        val person2 = PersonEntity(2L, LocalDateTime.now(), "Rita Lima", "FEMININE", 26, "ADULT")
+        val person1 = PersonEntity(
+            id = 1L,
+            name = "Vasco Lusitano",
+            sex = "MASCULINE",
+            age = 27,
+            maturity = "ADULT"
+        )
+        val person2 = PersonEntity(
+            id = 2L,
+            name = "Rita Lima",
+            sex = "FEMININE",
+            age = 26,
+            maturity = "ADULT"
+        )
         personRepository.saveAll(
             listOf(person1, person2)
         )

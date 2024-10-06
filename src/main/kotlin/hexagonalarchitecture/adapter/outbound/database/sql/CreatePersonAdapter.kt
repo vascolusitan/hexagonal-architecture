@@ -1,6 +1,6 @@
-package hexagonalarchitecture.adapter.outbound.database
+package hexagonalarchitecture.adapter.outbound.database.sql
 
-import hexagonalarchitecture.adapter.outbound.database.mapper.PersonEntityMapper
+import hexagonalarchitecture.adapter.outbound.database.sql.mapper.PersonEntityMapper
 import hexagonalarchitecture.application.domain.model.Person
 import hexagonalarchitecture.application.port.outbound.CreatePersonPort
 import org.springframework.stereotype.Component
@@ -17,8 +17,10 @@ class CreatePersonAdapter(
         )
     }
 
-    override fun audit(message: String) {
-        TODO("Not yet implemented")
+    override fun createWithMessageId(messageId: String, person: Person) {
+        val personEntity = personEntityMapper.domainToDbEntity(person)
+            .copy(messageId = messageId)
+        personRepository.save(personEntity)
     }
 
 }

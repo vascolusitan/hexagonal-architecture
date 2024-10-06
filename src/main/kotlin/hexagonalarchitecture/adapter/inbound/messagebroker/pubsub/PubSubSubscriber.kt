@@ -23,7 +23,7 @@ class PubSubSubscriber(
         val person = Gson().fromJson(payload, Person::class.java)
         createPersonUseCase.create(
             message.pubsubMessage.messageId,
-            message.toString(),
+            message.hashCode(),
             person
         )
         message.ack()
