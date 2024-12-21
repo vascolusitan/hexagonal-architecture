@@ -1,6 +1,7 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub
 
-import avro.event.PersonCreatedEvent
+import avro.header.Entity
+import avro.header.Operation
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.cloud.spring.pubsub.support.GcpPubSubHeaders
 import org.springframework.context.annotation.Bean
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class PersonSubscriber(
-    private val personCreatedHandler: PersonCreatedHandler,
+    private val eventHandlerRegistry: EventHandlerRegistry
 ) {
 
     @Bean
@@ -20,11 +21,20 @@ class PersonSubscriber(
         .log("Message Payload: ${'$'}{payload}")
         .log("Acknowledgeable message: ${'$'}{headers[gcp_pubsub_original_message]}")
         .handle { genericMessage: Message<*> ->
-            val operation = genericMessage.headers["eventOperation"]
-            val messageId : UUID = genericMessage.headers["id"] as UUID
+            val entity = Entity.valueOf(genericMessage.headers["eventEntity"].toString())
+            val operation = Operation.valueOf(genericMessage.headers["eventOperation"].toString())
+
             GcpPubSubHeaders.getOriginalMessage(genericMessage).get().ack()
-            val event = parseJsonData(genericMessage.payload as ByteArray, PersonCreatedEvent::class.java)
-            personCreatedHandler.handle(messageId, event)
+
+            val handler = eventHandlerRegistry.getHandler(entity,operation)
+                ?: throw IllegalArgumentException("No handler found for the received entity and operation types. " +
+                        "Entity: $entity, Operation: $operation")
+
+            val event = parseJsonData(genericMessage.payload as ByteArray, handler.eventClassType as Class<*>)
+
+            val messageId : UUID = genericMessage.headers["id"] as UUID
+
+            handler.handle(messageId, handler.castToEvent(event)!!)
         }
         .get()
 
