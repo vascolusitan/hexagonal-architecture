@@ -1,13 +1,11 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub.configuration
+package hexagonalarchitecture.adapter.inbound.messagebroker.configuration.pubsub
 
 import com.google.api.gax.core.CredentialsProvider
 import com.google.api.gax.core.NoCredentialsProvider
 import com.google.cloud.spring.core.GcpProjectIdProvider
-import com.google.cloud.spring.pubsub.integration.inbound.PubSubMessageSource
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import org.springframework.integration.core.MessageSource
 
 @Configuration
 class GcpConfiguration {

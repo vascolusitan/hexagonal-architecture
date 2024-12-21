@@ -1,4 +1,4 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub
+package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling
 
 import java.util.UUID
 
@@ -7,6 +7,5 @@ interface EventHandler<T> {
     val eventClassType: Class<T>
 
     fun handle(messageId: UUID, event: Any)
-    fun castToEvent(obj: Any): T = eventClassType.cast(obj)
 
 }

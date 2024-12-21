@@ -1,4 +1,4 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub.annotation
+package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling
 
 import avro.header.Entity
 import avro.header.Operation

@@ -1,10 +1,9 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub
+package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling
 
 import avro.header.Entity
 import avro.header.Operation
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Component
-import hexagonalarchitecture.adapter.inbound.messagebroker.pubsub.annotation.Handler
 
 @Component
 class EventHandlerRegistry(
