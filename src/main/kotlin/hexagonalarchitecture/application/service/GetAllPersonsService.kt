@@ -1,6 +1,6 @@
 package hexagonalarchitecture.application.service
 
-import hexagonalarchitecture.application.domain.model.Person
+import hexagonalarchitecture.application.domain.Person
 import hexagonalarchitecture.application.port.inbound.GetAllPersonsUseCase
 import hexagonalarchitecture.application.port.outbound.GetAllPersonsPort
 import org.springframework.stereotype.Service

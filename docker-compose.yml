@@ -4,7 +4,7 @@ services:
 
   pubsub-emulator:
     image: gcr.io/google.com/cloudsdktool/cloud-sdk:488.0.0-emulators
-    container_name: pubsub-emulator
+    container_name: hexagonal-pubsub-emulator
     ports:
       - "8685:8685"
     volumes:

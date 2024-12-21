@@ -1,7 +1,7 @@
 package hexagonalarchitecture.adapter.inbound.rest.mapper
 
 import hexagonalarchitecture.adapter.inbound.rest.model.PersonApi
-import hexagonalarchitecture.application.domain.model.Person
+import hexagonalarchitecture.application.domain.Person
 import org.mapstruct.Mapper
 
 @Mapper(componentModel = "spring")

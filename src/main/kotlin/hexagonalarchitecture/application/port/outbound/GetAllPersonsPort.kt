@@ -1,6 +1,6 @@
 package hexagonalarchitecture.application.port.outbound
 
-import hexagonalarchitecture.application.domain.model.Person
+import hexagonalarchitecture.application.domain.Person
 
 interface GetAllPersonsPort {
 

@@ -2,9 +2,9 @@ package hexagonalarchitecture.adapter.outbound.database.sql
 
 import hexagonalarchitecture.adapter.outbound.database.sql.mapper.PersonEntityMapper
 import hexagonalarchitecture.adapter.outbound.database.sql.model.PersonEntity
-import hexagonalarchitecture.application.domain.model.Maturity
-import hexagonalarchitecture.application.domain.model.Person
-import hexagonalarchitecture.application.domain.model.Sex
+import hexagonalarchitecture.application.domain.Maturity
+import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.domain.Sex
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
@@ -12,7 +12,6 @@ import io.mockk.junit5.MockKExtension
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import java.time.LocalDateTime
 
 @ExtendWith(MockKExtension::class)
 class AuditMessageAdapterTest {

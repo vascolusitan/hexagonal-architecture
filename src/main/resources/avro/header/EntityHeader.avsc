@@ -1,0 +1,6 @@
+{
+  "type": "enum",
+  "name": "Entity",
+  "namespace": "avro.header",
+  "symbols": ["PERSON", "ANIMAL"]
+}

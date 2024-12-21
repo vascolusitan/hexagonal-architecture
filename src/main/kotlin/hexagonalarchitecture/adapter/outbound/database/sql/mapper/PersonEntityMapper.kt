@@ -1,7 +1,7 @@
 package hexagonalarchitecture.adapter.outbound.database.sql.mapper
 
 import hexagonalarchitecture.adapter.outbound.database.sql.model.PersonEntity
-import hexagonalarchitecture.application.domain.model.Person
+import hexagonalarchitecture.application.domain.Person
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.mapstruct.Mappings

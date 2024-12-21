@@ -1,8 +1,8 @@
 package hexagonalarchitecture.application.service
 
-import hexagonalarchitecture.application.domain.model.Maturity
-import hexagonalarchitecture.application.domain.model.Person
-import hexagonalarchitecture.application.domain.model.Sex
+import hexagonalarchitecture.application.domain.Maturity
+import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.domain.Sex
 import hexagonalarchitecture.application.port.outbound.GetAllPersonsPort
 import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs

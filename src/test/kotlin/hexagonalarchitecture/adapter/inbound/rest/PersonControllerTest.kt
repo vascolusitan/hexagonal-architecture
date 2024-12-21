@@ -3,9 +3,9 @@ package hexagonalarchitecture.adapter.inbound.rest
 import com.ninjasquad.springmockk.MockkBean
 import hexagonalarchitecture.adapter.inbound.rest.mapper.PersonApiMapper
 import hexagonalarchitecture.adapter.inbound.rest.model.PersonApi
-import hexagonalarchitecture.application.domain.model.Maturity
-import hexagonalarchitecture.application.domain.model.Person
-import hexagonalarchitecture.application.domain.model.Sex
+import hexagonalarchitecture.application.domain.Maturity
+import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.domain.Sex
 import hexagonalarchitecture.application.port.inbound.GetAllPersonsUseCase
 import io.mockk.every
 import org.junit.jupiter.api.Test

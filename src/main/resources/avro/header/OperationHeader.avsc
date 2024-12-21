@@ -1,0 +1,6 @@
+{
+  "type": "enum",
+  "name": "Operation",
+  "namespace": "avro.header",
+  "symbols": ["CREATE", "UPDATE", "DELETE"]
+}
