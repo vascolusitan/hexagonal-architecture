@@ -1,4 +1,4 @@
-package hexagonalarchitecture.application.domain.model
+package hexagonalarchitecture.application.domain
 
 enum class Sex {
     MASCULINE,
