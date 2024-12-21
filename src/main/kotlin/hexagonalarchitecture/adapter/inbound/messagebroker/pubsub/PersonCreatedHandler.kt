@@ -9,14 +9,26 @@ import java.util.UUID
 
 @Handler(entity = Entity.PERSON, operation = Operation.CREATE)
 class PersonCreatedHandler(
-    private val createPersonUseCase: CreatePersonUseCase
-) {
+    private val createPersonUseCase: CreatePersonUseCase,
+    override val eventClassType: Class<PersonCreatedEvent> = PersonCreatedEvent::class.java
+): EventHandler<PersonCreatedEvent> {
 
-    //const val HANDLER_EVENT_CLASS = PersonCreatedEvent::class.java
-
-    fun handle(messageId: UUID, event: PersonCreatedEvent) {
+    override fun handle(messageId: UUID, event: Any) {
+        val personCreatedEvent = castToEvent(event)
         println("pintou $event")
         //message.ack()
     }
+
+//    override fun getEventClass(): Any {
+//        return eventClass
+//    }
+//
+//    override fun castToEvent(obj: Any): PersonCreatedEvent {
+//        return eventClass.cast(obj)
+//    }
+
+//    override fun getEventType(): KClass<T> {
+//        return PersonCreatedEvent::class
+//    }
 
 }
