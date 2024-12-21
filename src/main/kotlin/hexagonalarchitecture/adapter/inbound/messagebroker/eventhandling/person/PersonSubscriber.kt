@@ -1,9 +1,9 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub
+package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.person
 
 import avro.header.Entity
 import avro.header.Operation
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.cloud.spring.pubsub.support.GcpPubSubHeaders
+import hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.EventHandlerRegistry
 import org.springframework.context.annotation.Bean
 import org.springframework.integration.dsl.IntegrationFlow
 import java.util.UUID
@@ -17,24 +17,23 @@ class PersonSubscriber(
 
     @Bean
     fun personFlow() = IntegrationFlow.from("personChannel")
-        .log("Received message: ${'$'}{headers}")
-        .log("Message Payload: ${'$'}{payload}")
-        .log("Acknowledgeable message: ${'$'}{headers[gcp_pubsub_original_message]}")
         .handle { genericMessage: Message<*> ->
             val entity = Entity.valueOf(genericMessage.headers["eventEntity"].toString())
             val operation = Operation.valueOf(genericMessage.headers["eventOperation"].toString())
 
-            GcpPubSubHeaders.getOriginalMessage(genericMessage).get().ack()
+            //TODO: Arrange dynamic way of manually acknowledging message
+            //GcpPubSubHeaders.getOriginalMessage(genericMessage).get().ack()
 
             val handler = eventHandlerRegistry.getHandler(entity,operation)
                 ?: throw IllegalArgumentException("No handler found for the received entity and operation types. " +
                         "Entity: $entity, Operation: $operation")
 
-            val event = parseJsonData(genericMessage.payload as ByteArray, handler.eventClassType as Class<*>)
+            val eventClassType = handler.eventClassType as Class<*>
+            val event = parseJsonData(genericMessage.payload as ByteArray, eventClassType)
 
             val messageId : UUID = genericMessage.headers["id"] as UUID
 
-            handler.handle(messageId, handler.castToEvent(event)!!)
+            handler.handle(messageId, eventClassType.cast(event))
         }
         .get()
 

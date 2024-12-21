@@ -1,4 +1,4 @@
-package hexagonalarchitecture.adapter.inbound.messagebroker.pubsub.configuration
+package hexagonalarchitecture.adapter.inbound.messagebroker.configuration
 
 import avro.header.Entity
 import org.springframework.context.annotation.Bean
@@ -38,12 +38,5 @@ class MessageFlowConfiguration {
         setChannelMapping(Entity.PERSON.name, "personChannel")
         defaultOutputChannel = errorChannel()
     }
-
-//    fun genericFlow(type: String) =
-//        IntegrationFlow.from(type + "Channel")
-//            .route(HeaderValueRouter("eventOperation").apply {
-//                setChannelMapping("Created", type + "CreatedHandler")
-//                setChannelMapping("Updated", type + "UpdatedHandler")
-//            }).get()
 
 }
