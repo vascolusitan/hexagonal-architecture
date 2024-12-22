@@ -1,9 +1,9 @@
 package hexagonalarchitecture.application.port.inbound
 
-import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.dto.CreatePersonDto
 
 interface CreatePersonUseCase {
 
-    fun create(messageId: String, messageHash: Int, person: Person)
+    fun create(createPersonDto: CreatePersonDto)
 
 }
