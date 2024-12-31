@@ -35,7 +35,7 @@ class PersonCreatedHandlerTest {
         val messageId = UUID.randomUUID()
         val event = fixture.create<PersonCreatedEvent>()
         val dto = fixture.create<CreatePersonDto>()
-        val expectedDto = dto.copy(messageId = messageId)
+        val expectedDto = dto.copy(messageId = messageId.toString())
 
         every { personEventMapper.eventToDto(event) } returns dto
 
