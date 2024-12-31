@@ -4,16 +4,12 @@ import hexagonalarchitecture.application.domain.Maturity
 import hexagonalarchitecture.application.domain.Person
 import hexagonalarchitecture.application.domain.Sex
 import hexagonalarchitecture.application.port.outbound.GetAllPersonsPort
-import io.mockk.every
-import io.mockk.impl.annotations.InjectMockKs
-import io.mockk.impl.annotations.MockK
-import io.mockk.junit5.MockKExtension
 import org.assertj.core.api.AssertionsForClassTypes.assertThat
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.extension.ExtendWith
 
-@ExtendWith(MockKExtension::class)
+//@ExtendWith(MockKExtension::class)
 class GetAllPersonsServiceTest {
 
 //    @MockK

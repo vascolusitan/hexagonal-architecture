@@ -1,8 +1,8 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.person
 
-import avro.header.Entity
-import avro.header.Operation
 import com.fasterxml.jackson.databind.ObjectMapper
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Entity
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Operation
 import hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.EventHandlerRegistry
 import org.springframework.context.annotation.Bean
 import org.springframework.integration.dsl.IntegrationFlow
@@ -41,41 +41,5 @@ class PersonSubscriber(
         val jsonString = String(byteArray)
         return ObjectMapper().readValue(jsonString, clazz)
     }
-
-//    private fun eventOperationRouter() = HeaderValueRouter("eventOperation").apply {
-//        setChannelMapping("created", "personCreatedChannel")
-//        //defaultOutputChannel = errorChannel()
-//    }
-
-
-//    @ServiceActivator(inputChannel = "personInputChannel")
-//    fun messageReceiver(
-//        @Header(GcpPubSubHeaders.ORIGINAL_MESSAGE) message: BasicAcknowledgeablePubsubMessage,
-//        @Payload payload: ByteArray
-//    ) {
-//        val person = Gson().fromJson(payload, Person::class.java)
-//        createPersonUseCase.create(
-//            message.pubsubMessage.messageId,
-//            message.hashCode(),
-//            person
-//        )
-//        message.ack()
-//    }
-
-//    @Bean
-//    fun intFinishFlow(personInputChannel: MessageChannel): IntegrationFlow {
-//        return integrationFlow {
-//            handle { message: Message<*> ->
-//                handleMessage(message)
-//            }
-//        }
-//
-//    }
-//
-//
-//    fun handleMessage(message: Message<*>): String {
-//        return "messageHandler"
-//    }
-
 
 }

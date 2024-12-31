@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 data class PersonEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val personId: String,
     val messageId: String? = null,
     val timeStamp: LocalDateTime? = LocalDateTime.now(),
     val name: String,

@@ -1,11 +1,9 @@
 package hexagonalarchitecture.application.port.outbound
 
-import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.dto.CreatePersonDto
 
 interface CreatePersonPort {
 
-    fun create(person: Person)
-
-    fun createWithMessageId(messageId: String, person: Person)
+    fun save(createPersonDto: CreatePersonDto)
 
 }

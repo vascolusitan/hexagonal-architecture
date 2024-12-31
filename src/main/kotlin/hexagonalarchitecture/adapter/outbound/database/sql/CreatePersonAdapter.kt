@@ -1,7 +1,7 @@
 package hexagonalarchitecture.adapter.outbound.database.sql
 
 import hexagonalarchitecture.adapter.outbound.database.sql.mapper.PersonEntityMapper
-import hexagonalarchitecture.application.domain.Person
+import hexagonalarchitecture.application.dto.CreatePersonDto
 import hexagonalarchitecture.application.port.outbound.CreatePersonPort
 import org.springframework.stereotype.Component
 
@@ -11,15 +11,8 @@ class CreatePersonAdapter(
     private val personEntityMapper: PersonEntityMapper
 ): CreatePersonPort {
 
-    override fun create(person: Person) {
-        personRepository.save(
-            personEntityMapper.domainToDbEntity(person)
-        )
-    }
-
-    override fun createWithMessageId(messageId: String, person: Person) {
-        val personEntity = personEntityMapper.domainToDbEntity(person)
-            .copy(messageId = messageId)
+    override fun save(createPersonDto: CreatePersonDto) {
+        val personEntity = personEntityMapper.dtoToDbEntity(createPersonDto)
         personRepository.save(personEntity)
     }
 

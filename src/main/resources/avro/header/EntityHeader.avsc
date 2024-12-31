@@ -1,6 +1,6 @@
 {
   "type": "enum",
   "name": "Entity",
-  "namespace": "avro.header",
+  "namespace": "hexagonalarchitecture.adapter.inbound.messagebroker.avro.header",
   "symbols": ["PERSON", "ANIMAL"]
 }
