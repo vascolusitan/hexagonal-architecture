@@ -4,6 +4,6 @@ import hexagonalarchitecture.application.dto.CreatePersonDto
 
 interface CreatePersonUseCase {
 
-    fun create(createPersonDto: CreatePersonDto)
+    fun process(createPersonDto: CreatePersonDto)
 
 }

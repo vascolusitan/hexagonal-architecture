@@ -1,7 +1,7 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling
 
-import avro.header.Entity
-import avro.header.Operation
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Entity
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Operation
 import org.springframework.stereotype.Component
 
 @Target(AnnotationTarget.CLASS)

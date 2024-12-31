@@ -1,8 +1,9 @@
 {
   "type": "record",
   "name": "PersonCreatedEvent",
-  "namespace": "avro.event",
+  "namespace": "hexagonalarchitecture.adapter.inbound.messagebroker.avro",
   "fields": [
+      { "name": "personId", "type": "string" },
       { "name": "name", "type": "string" },
       { "name": "sex", "type": "string" },
       { "name": "age", "type": "int" },

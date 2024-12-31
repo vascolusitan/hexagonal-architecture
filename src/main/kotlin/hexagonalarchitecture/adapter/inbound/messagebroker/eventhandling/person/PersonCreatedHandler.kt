@@ -1,8 +1,8 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.person
 
-import avro.event.PersonCreatedEvent
-import avro.header.Entity
-import avro.header.Operation
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.PersonCreatedEvent
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Entity
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Operation
 import hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.EventHandler
 import hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.Handler
 import hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.person.mapper.PersonEventMapper
@@ -20,7 +20,7 @@ class PersonCreatedHandler(
         val personCreatedEvent = eventClassType.cast(event)!!
         val dto = personEventMapper.eventToDto(personCreatedEvent)
             .copy(messageId = messageId)
-        createPersonUseCase.create(dto)
+        createPersonUseCase.process(dto)
     }
 
 }

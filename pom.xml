@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -29,17 +29,18 @@
 	<properties>
 		<java.version>21</java.version>
 		<kotlin.version>1.9.25</kotlin.version>
-		<jvm.version>1.8</jvm.version>
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<mapstruct.version>1.6.2</mapstruct.version>
 		<gcp-pubsub.version>5.7.0</gcp-pubsub.version>
 		<spring-boot-starter-integration.version>3.3.4</spring-boot-starter-integration.version>
 		<spring-data-redis.version>3.3.4</spring-data-redis.version>
 		<asserj-core.version>3.26.3</asserj-core.version>
-		<mockk.version>1.13.12</mockk.version>
+		<mockk.version>1.13.11</mockk.version>
 		<springmockk.version>3.0.1</springmockk.version>
 	</properties>
+
 	<dependencies>
+		<!-- Spring Boot dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -61,28 +62,35 @@
 			<artifactId>kotlin-stdlib</artifactId>
 		</dependency>
 
+		<!-- Kotlin dependencies -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Mapstruct for DTO mapping -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
 
+		<!-- Spring Integration -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-integration</artifactId>
 			<version>${spring-boot-starter-integration.version}</version>
 		</dependency>
+
+		<!-- Google Cloud PubSub -->
 		<dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>spring-cloud-gcp-starter-pubsub</artifactId>
 			<version>${gcp-pubsub.version}</version>
 		</dependency>
+
+		<!-- Avro -->
 		<dependency>
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro</artifactId>
@@ -94,11 +102,14 @@
 			<version>1.12.0</version>
 		</dependency>
 
+		<!-- H2 Database -->
 		<dependency>
-		    <groupId>com.h2database</groupId>
-		    <artifactId>h2</artifactId>
-		    <scope>runtime</scope>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Spring Data Redis -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -109,36 +120,44 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
-		    <groupId>io.mockk</groupId>
-		    <artifactId>mockk-jvm</artifactId>
-			<version>${mockk.version}</version>
-		    <scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.ninja-squad</groupId>
-			<artifactId>springmockk</artifactId>
-			<version>${springmockk.version}</version>
+			<groupId>io.mockk</groupId>
+			<artifactId>mockk</artifactId>
+			<version>1.12.0</version>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.nylle</groupId>
+			<artifactId>kotlinfixture</artifactId>
+			<version>0.4.1</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
 		<testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
 		<plugins>
+			<!-- Spring Boot Maven Plugin for packaging Spring Boot app -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Kotlin Maven Plugin -->
 			<plugin>
 				<groupId>org.jetbrains.kotlin</groupId>
 				<artifactId>kotlin-maven-plugin</artifactId>
+				<version>${kotlin.version}</version>
 				<executions>
 					<execution>
 						<id>kapt</id>
@@ -171,6 +190,7 @@
 						<plugin>spring</plugin>
 						<plugin>jpa</plugin>
 					</compilerPlugins>
+					<jvmTarget>${java.version}</jvmTarget>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -185,22 +205,28 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+
+			<!-- Avro Maven Plugin for Avro Schema Compilation -->
 			<plugin>
 				<groupId>org.apache.avro</groupId>
 				<artifactId>avro-maven-plugin</artifactId>
 				<version>1.12.0</version>
 				<executions>
 					<execution>
+						<id>schemas</id>
+						<phase>generate-sources</phase>
 						<goals>
 							<goal>schema</goal>
+							<goal>protocol</goal>
+							<goal>idl-protocol</goal>
 						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
+							<outputDirectory>${project.build.directory}/generated-sources/avro</outputDirectory>
+							<stringType>String</stringType>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<sourceDirectory>${project.basedir}/src/main/resources/avro</sourceDirectory>
-					<outputDirectory>${project.basedir}/target/generated-sources/avro</outputDirectory>
-					<stringType>String</stringType>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

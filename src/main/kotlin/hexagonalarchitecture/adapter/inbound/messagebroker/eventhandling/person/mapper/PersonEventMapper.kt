@@ -1,6 +1,6 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.eventhandling.person.mapper
 
-import avro.event.PersonCreatedEvent
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.PersonCreatedEvent
 import hexagonalarchitecture.application.dto.CreatePersonDto
 import org.mapstruct.Mapper
 

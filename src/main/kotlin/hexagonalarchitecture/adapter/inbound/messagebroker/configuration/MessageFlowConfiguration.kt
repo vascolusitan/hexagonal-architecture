@@ -1,6 +1,6 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.configuration
 
-import avro.header.Entity
+import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Entity
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.integration.annotation.ServiceActivator
