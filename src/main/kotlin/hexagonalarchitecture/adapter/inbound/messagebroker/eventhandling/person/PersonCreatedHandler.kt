@@ -19,7 +19,7 @@ class PersonCreatedHandler(
     override fun handle(messageId: UUID, event: Any) {
         val personCreatedEvent = eventClassType.cast(event)!!
         val dto = personEventMapper.eventToDto(personCreatedEvent)
-            .copy(messageId = messageId)
+            .copy(messageId = messageId.toString())
         createPersonUseCase.process(dto)
     }
 
