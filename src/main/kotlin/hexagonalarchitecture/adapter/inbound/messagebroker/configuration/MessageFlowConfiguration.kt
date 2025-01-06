@@ -1,5 +1,6 @@
 package hexagonalarchitecture.adapter.inbound.messagebroker.configuration
 
+import hexagonalarchitecture.adapter.inbound.messagebroker.MessageBrokerConstants.MESSAGE_ENTITY_TYPE_HEADER
 import hexagonalarchitecture.adapter.inbound.messagebroker.avro.header.Entity
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -34,7 +35,7 @@ class MessageFlowConfiguration {
         println("Error handling message: ${errorMessage.payload}")
     }
 
-    private fun eventTypeRouter() = HeaderValueRouter("eventEntity").apply {
+    private fun eventTypeRouter() = HeaderValueRouter(MESSAGE_ENTITY_TYPE_HEADER).apply {
         setChannelMapping(Entity.PERSON.name, "personChannel")
         defaultOutputChannel = errorChannel()
     }
