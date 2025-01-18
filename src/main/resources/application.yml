@@ -10,6 +10,9 @@ spring:
   cloud.gcp:
     project-id: hexagonal-architecture
     pubsub.emulator-host: "localhost:8685"
-  redis:
-    host: localhost
-    port: 6379
+  flyway:
+    enabled: true
+  data:
+    redis:
+      host: localhost
+      port: 6379

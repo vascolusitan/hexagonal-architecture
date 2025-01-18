@@ -11,6 +11,10 @@ import org.springframework.messaging.MessageChannel
 @Configuration
 class PubSubConfiguration {
 
+    companion object {
+        const val PUBSUB_TOPIC = "json-topic-sub"
+    }
+
     @Bean
     fun pubsubInputChannel(): MessageChannel = DirectChannel()
 

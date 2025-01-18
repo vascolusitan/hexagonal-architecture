@@ -23,12 +23,12 @@ class PersonEntityMapperTest {
             .create()
 
         val expectedEntity = PersonEntity(
-            personId = UUID.fromString(dto.personId),
+            personId = dto.personId,
             name = dto.name,
             sex = dto.sex,
             age = dto.age,
             maturity = dto.maturity,
-            messageId = UUID.fromString(dto.messageId)
+            messageId = dto.messageId
         )
 
         // act
