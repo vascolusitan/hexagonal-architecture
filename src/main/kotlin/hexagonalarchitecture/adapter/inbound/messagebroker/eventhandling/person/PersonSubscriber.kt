@@ -58,7 +58,7 @@ class PersonSubscriber(
         val eventClassType = handler.eventClassType as Class<*>
         val event = ParserUtils.parseJsonData(genericMessage.payload as ByteArray, eventClassType)
 
-        val messageId : UUID = genericMessage.headers[MESSAGE_ID_HEADER] as UUID
+        val messageId = UUID.fromString(genericMessage.headers[MESSAGE_ID_HEADER].toString())
 
         handler.handle(messageId, eventClassType.cast(event))
 
