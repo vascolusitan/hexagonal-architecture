@@ -12,7 +12,8 @@ import org.springframework.messaging.MessageChannel
 class PubSubConfiguration {
 
     companion object {
-        const val PUBSUB_TOPIC = "json-topic-sub"
+        const val PUBSUB_TOPIC = "json-topic"
+        const val PUBSUB_SUBSCRIPTION = "json-topic-sub"
     }
 
     @Bean
@@ -23,7 +24,7 @@ class PubSubConfiguration {
         @Qualifier("inboundChannel") inboundChannel: MessageChannel,
         pubSubTemplate: PubSubTemplate,
     ): PubSubInboundChannelAdapter =
-        PubSubInboundChannelAdapter(pubSubTemplate, "json-topic-sub").apply {
+        PubSubInboundChannelAdapter(pubSubTemplate, PUBSUB_SUBSCRIPTION).apply {
             outputChannel = inboundChannel
             //ackMode = AckMode.MANUAL
         }

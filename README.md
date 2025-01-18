@@ -17,6 +17,7 @@ curl -X POST "http://0.0.0.0:8685/v1/projects/hexagonal-architecture/topics/json
   "messages": [
     {
       "attributes": {
+        "messageId": "0d6dbb28-9687-4033-9263-52a361b4d268",
         "eventEntity": "PERSON",
         "eventOperation": "CREATE"
       },
