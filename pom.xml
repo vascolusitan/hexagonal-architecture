@@ -34,13 +34,15 @@
 		<gcp-pubsub.version>5.7.0</gcp-pubsub.version>
 		<spring-boot-starter-integration.version>3.3.4</spring-boot-starter-integration.version>
 		<spring-data-redis.version>3.3.4</spring-data-redis.version>
-		<asserj-core.version>3.26.3</asserj-core.version>
-		<mockk.version>1.13.11</mockk.version>
-		<springmockk.version>3.0.1</springmockk.version>
+		<avro.version>1.12.0</avro.version>
+		<flyway.version>11.1.1</flyway.version>
+		<mockk.version>1.12.0</mockk.version>
+		<kotlinfixture.version>0.4.1</kotlinfixture.version>
+		<awaitility-kotlin.version>4.2.2</awaitility-kotlin.version>
 	</properties>
 
 	<dependencies>
-		<!-- Spring Boot dependencies -->
+		<!-- Core Framework Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -49,6 +51,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<!-- Kotlin Support Dependencies -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-kotlin</artifactId>
@@ -62,60 +66,53 @@
 			<artifactId>kotlin-stdlib</artifactId>
 		</dependency>
 
-		<!-- Kotlin dependencies -->
+		<!-- Dependency Injection and Mapping Dependencies -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<!-- Mapstruct for DTO mapping -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
 
-		<!-- Spring Integration -->
+		<!-- Messaging & Integration Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-integration</artifactId>
 			<version>${spring-boot-starter-integration.version}</version>
 		</dependency>
-
-		<!-- Google Cloud PubSub -->
 		<dependency>
 			<groupId>com.google.cloud</groupId>
 			<artifactId>spring-cloud-gcp-starter-pubsub</artifactId>
 			<version>${gcp-pubsub.version}</version>
 		</dependency>
-
-		<!-- Avro -->
 		<dependency>
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro</artifactId>
-			<version>1.12.0</version>
+			<version>${avro.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro-compiler</artifactId>
-			<version>1.12.0</version>
+			<version>${avro.version}</version>
 		</dependency>
 
-		<!-- H2 Database -->
+		<!-- Database Dependencies -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>11.1.1</version>
+			<version>${flyway.version}</version>
 		</dependency>
 
-		<!-- Spring Data Redis -->
+		<!-- Redis Dependencies -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -126,31 +123,28 @@
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 
-		<!-- Test dependencies -->
+		<!-- Testing Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>io.mockk</groupId>
 			<artifactId>mockk</artifactId>
-			<version>1.12.0</version>
+			<version>${mockk.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.github.nylle</groupId>
 			<artifactId>kotlinfixture</artifactId>
-			<version>0.4.1</version>
+			<version>${kotlinfixture.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.awaitility</groupId>
 			<artifactId>awaitility-kotlin</artifactId>
-			<version>4.2.2</version>
+			<version>${awaitility-kotlin.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -223,7 +217,7 @@
 			<plugin>
 				<groupId>org.apache.avro</groupId>
 				<artifactId>avro-maven-plugin</artifactId>
-				<version>1.12.0</version>
+				<version>${avro.version}</version>
 				<executions>
 					<execution>
 						<id>schemas</id>

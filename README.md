@@ -119,7 +119,8 @@ This project uses a variety of dependencies, grouped by purpose:
   - **H2 Database:** An in-memory database for lightweight testing;
   - ~~**MySQL:** A relational database for production use;~~
   - **Flyway Core:** Manages database migrations and version control.
-- **Messaging**
+- **Messaging  Integration**
+  - **Spring Boot Starter Integration:** Provides support for enterprise integration patterns;
   - **Spring Cloud GCP Starter PubSub:** Integration with Google Cloud Pub/Sub for messaging;
   - **Avro:** A schema-based serialization system for defining and exchanging structured data.
 - **Dependency Injection and Mapping**
@@ -230,4 +231,7 @@ tests:
 - Add a MySQL container with a Maven profile for database testing;
 - Improve Redis integration for advanced use cases;
 - Add architecture tests for example with Konsist;
-- Add more publish cases for Google Pub/Sub.
+- Add more publish cases for messaging systems;
+- Apply logging and monitoring frameworks;
+- Use manual ack and backoff patterns, dlq, etc.;
+- Replace sh files to global compatible scripts (windows, linux, etc.).
